@@ -1,0 +1,5199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="themes/mobiletheme.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.3.min.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	
+	<style>
+div.ex {
+    width: 93%;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: auto;
+}
+#forImage{
+width: 93%;
+    padding: 10px;
+	border: 5px solid gray;
+    margin: auto;
+	height:100px;
+}
+#togglethis{
+width: 93%;
+    padding: 10px;
+	border: 5px solid gray;
+    margin: auto;
+	height:100%;
+}
+
+#btnAnimals,#logout,#leaderBoard,#help{
+width: 90%;
+    padding: 10px;
+	border: 5px solid #08387c;
+	background-color:#08387c;
+    margin: auto;
+	height:50px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size: 40px;
+}
+
+#btnStartAnimals{
+width: 90%;
+    padding: 10px;
+	border: 5px solid #bd0613;
+	background-color:#bd0613;
+    margin: auto;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#homeBg{
+	position:fixed;
+	height:100%;
+	width:100%;
+	background-image:url(css/home.jpg);
+	background-position: top center;
+	background-size: cover;
+}
+#result,#gameBg,#bgScores{
+	position:fixed;
+	height:100%;
+	width:100%;
+	background-image:url(css/plain.jpg);
+	background-position: top center;
+	background-size: cover;
+}
+#helps{
+	position:fixed;
+	height:100%;
+	width:100%;
+	background-image:url(css/help.jpg);
+	background-position: top center;
+	background-size: cover;
+}
+#relative,#relative2,#relative3 {
+    position: relative;
+    top: 10px;
+	color:white;
+}
+</style>
+</head>
+<body>
+<div data-role="page" data-theme="a" id="home">
+<img id="homeBg" />
+<div data-role="content" data-theme="a">
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br><br><br>
+<a data-role="button" data-mini="true" id="btnAnimals" href="#questionAnimals">START GAME</a><br /><br />
+<a data-role="button" data-mini="true" id="leaderBoard" href="#leader" onclick="Ajax()">HIGH SCORE</a><br /><br />
+<a data-role="button" data-mini="true" id="help" href="#help1">HELP</a><br /><br />
+<a href="#" id="logout"  data-role="button" data-mini="true">LOGOUT</a></li>
+</div>
+</div>
+<div data-role="page" data-theme="a" id="leader">
+<img id="bgScores" />		
+<div data-role="content" data-theme="a">
+<div id="relative3">
+<center><h1>HIGH SCORE</h1><div id="inserthere"></div></center>
+</div>
+</div>
+<div data-role="footer" data-position="fixed">		
+<div data-role="navbar">
+<ul>
+<li><a href="#home" id="logout">Back home</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div data-role="page" data-theme="a" id="questionAnimals">
+<img id="gameBg" />
+<div data-role="content" data-theme="a">
+<div id="relative" style="color:white;">
+<center>
+<h1>TIME</h1>
+<h2 id="showTimer"></h2>
+<h1>SCORE</h1><h2 id="asd" style="margin-left: auto; margin-right: auto;"></h2>	
+<span id="count"></span>		
+<h1 id="prog2"></h1>
+<h1 id="questions"></h1>
+</center>
+<a data-role="button" id="check1" class="q1" style="display:none"><span id="c1"></span></a>
+<a data-role="button" id="check2" class="q1" style="display:none"><span id="c2"></span></a>
+<a data-role="button" id="check3" class="q2" style="display:none"><span id="c4"></span></a>
+<a data-role="button" id="check4" class="q2" style="display:none"><span id="c3"></span></a>
+<a data-role="button" id="check5" class="q3" style="display:none"><span id="c5"></span></a>
+<a data-role="button" id="check6" class="q3" style="display:none"><span id="c6"></span></a>
+<a data-role="button" id="check7" class="q4" style="display:none"><span id="c7"></span></a>
+<a data-role="button" id="check8" class="q4" style="display:none"><span id="c8"></span></a>
+<a data-role="button" id="check9" class="q5" style="display:none"><span id="c9"></span></a>
+<a data-role="button" id="check10" class="q5" style="display:none"><span id="c10"></span></a>
+<a data-role="button" id="check11" class="q6" style="display:none"><span id="c11"></span></a>
+<a data-role="button" id="check12" class="q6" style="display:none"><span id="c12"></span></a>
+<a data-role="button" id="check13" class="q7" style="display:none"><span id="c13"></span></a>
+<a data-role="button" id="check14" class="q7" style="display:none"><span id="c14"></span></a>
+<a data-role="button" id="check15" class="q8" style="display:none"><span id="c15"></span></a>
+<a data-role="button" id="check16" class="q8" style="display:none"><span id="c16"></span></a>
+<a data-role="button" id="check17" class="q9" style="display:none"><span id="c17"></span></a>
+<a data-role="button" id="check18" class="q9" style="display:none"><span id="c18"></span></a>
+<a data-role="button" id="check19" class="q10" style="display:none"><span id="c19"></span></a>
+<a data-role="button" id="check20" class="q10" style="display:none"><span id="c20"></span></a>
+<a data-role="button" id="check21" class="q11" style="display:none"><span id="c21"></span></a>
+<a data-role="button" id="check22" class="q11" style="display:none"><span id="c22"></span></a>
+<a data-role="button" id="check23" class="q12" style="display:none"><span id="c23"></span></a>
+<a data-role="button" id="check24" class="q12" style="display:none"><span id="c24"></span></a>
+<a data-role="button" id="check25" class="q13" style="display:none"><span id="c25"></span></a>
+<a data-role="button" id="check26" class="q13" style="display:none"><span id="c26"></span></a>
+<a data-role="button" id="check27" class="q14" style="display:none"><span id="c27"></span></a>
+<a data-role="button" id="check28" class="q14" style="display:none"><span id="c28"></span></a>
+<a data-role="button" id="check29" class="q15" style="display:none"><span id="c29"></span></a>
+<a data-role="button" id="check30" class="q15" style="display:none"><span id="c30"></span></a>
+<a data-role="button" id="check31" class="q16" style="display:none"><span id="c31"></span></a>
+<a data-role="button" id="check32" class="q16" style="display:none"><span id="c32"></span></a>
+<a data-role="button" id="check33" class="q17" style="display:none"><span id="c33"></span></a>
+<a data-role="button" id="check34" class="q17" style="display:none"><span id="c34"></span></a>
+<a data-role="button" id="check35" class="q18" style="display:none"><span id="c35"></span></a>
+<a data-role="button" id="check36" class="q18" style="display:none"><span id="c36"></span></a>
+<a data-role="button" id="check37" class="q19" style="display:none"><span id="c37"></span></a>
+<a data-role="button" id="check38" class="q19" style="display:none"><span id="c38"></span></a>
+<a data-role="button" id="check39" class="q20" style="display:none"><span id="c39"></span></a>
+<a data-role="button" id="check40" class="q20" style="display:none"><span id="c40"></span></a>
+<a data-role="button" id="check41" class="q21" style="display:none"><span id="c41"></span></a>
+<a data-role="button" id="check42" class="q21" style="display:none"><span id="c42"></span></a>
+<a data-role="button" id="check43" class="q22" style="display:none"><span id="c43"></span></a>
+<a data-role="button" id="check44" class="q22" style="display:none"><span id="c44"></span></a>
+<a data-role="button" id="check45" class="q23" style="display:none"><span id="c45"></span></a>
+<a data-role="button" id="check46" class="q23" style="display:none"><span id="c46"></span></a>
+<a data-role="button" id="check47" class="q24" style="display:none"><span id="c47"></span></a>
+<a data-role="button" id="check48" class="q24" style="display:none"><span id="c48"></span></a>
+<a data-role="button" id="check49" class="q25" style="display:none"><span id="c49"></span></a>
+<a data-role="button" id="check50" class="q25" style="display:none"><span id="c50"></span></a>
+<a data-role="button" id="check51" class="q26" style="display:none"><span id="c51"></span></a>
+<a data-role="button" id="check52" class="q26" style="display:none"><span id="c52"></span></a>
+<a data-role="button" id="check53" class="q27" style="display:none"><span id="c53"></span></a>
+<a data-role="button" id="check54" class="q27" style="display:none"><span id="c54"></span></a>
+<a data-role="button" id="check55" class="q28" style="display:none"><span id="c55"></span></a>
+<a data-role="button" id="check56" class="q28" style="display:none"><span id="c56"></span></a>
+<a data-role="button" id="check57" class="q29" style="display:none"><span id="c57"></span></a>
+<a data-role="button" id="check58" class="q29" style="display:none"><span id="c58"></span></a>
+<a data-role="button" id="check59" class="q30" style="display:none"><span id="c59"></span></a>
+<a data-role="button" id="check60" class="q30" style="display:none"><span id="c60"></span></a>
+<a data-role="button" id="check61" class="q31" style="display:none"><span id="c61"></span></a>
+<a data-role="button" id="check62" class="q31" style="display:none"><span id="c62"></span></a>
+<a data-role="button" id="check63" class="q32" style="display:none"><span id="c63"></span></a>
+<a data-role="button" id="check64" class="q32" style="display:none"><span id="c64"></span></a>
+<a data-role="button" id="check65" class="q33" style="display:none"><span id="c65"></span></a>
+<a data-role="button" id="check66" class="q33" style="display:none"><span id="c66"></span></a>
+<a data-role="button" id="check67" class="q34" style="display:none"><span id="c67"></span></a>
+<a data-role="button" id="check68" class="q34" style="display:none"><span id="c68"></span></a>
+<a data-role="button" id="check69" class="q35" style="display:none"><span id="c69"></span></a>
+<a data-role="button" id="check70" class="q35" style="display:none"><span id="c70"></span></a>
+<a data-role="button" id="check71" class="q36" style="display:none"><span id="c71"></span></a>
+<a data-role="button" id="check72" class="q36" style="display:none"><span id="c72"></span></a>
+<a data-role="button" id="check73" class="q37" style="display:none"><span id="c73"></span></a>
+<a data-role="button" id="check74" class="q37" style="display:none"><span id="c74"></span></a>
+<a data-role="button" id="check75" class="q38" style="display:none"><span id="c75"></span></a>
+<a data-role="button" id="check76" class="q38" style="display:none"><span id="c76"></span></a>
+<a data-role="button" id="check77" class="q39" style="display:none"><span id="c77"></span></a>
+<a data-role="button" id="check78" class="q39" style="display:none"><span id="c78"></span></a>
+<a data-role="button" id="check79" class="q40" style="display:none"><span id="c79"></span></a>
+<a data-role="button" id="check80" class="q40" style="display:none"><span id="c80"></span></a>
+<a data-role="button" id="check81" class="q41" style="display:none"><span id="c81"></span></a>
+<a data-role="button" id="check82" class="q41" style="display:none"><span id="c82"></span></a>
+<a data-role="button" id="check83" class="q42" style="display:none"><span id="c83"></span></a>
+<a data-role="button" id="check84" class="q42" style="display:none"><span id="c84"></span></a>
+<a data-role="button" id="check85" class="q43" style="display:none"><span id="c85"></span></a>
+<a data-role="button" id="check86" class="q43" style="display:none"><span id="c86"></span></a>
+<a data-role="button" id="check87" class="q44" style="display:none"><span id="c87"></span></a>
+<a data-role="button" id="check88" class="q44" style="display:none"><span id="c88"></span></a>
+<a data-role="button" id="check89" class="q45" style="display:none"><span id="c89"></span></a>
+<a data-role="button" id="check90" class="q45" style="display:none"><span id="c90"></span></a>
+<a data-role="button" id="check91" class="q46" style="display:none"><span id="c91"></span></a>
+<a data-role="button" id="check92" class="q46" style="display:none"><span id="c92"></span></a>
+<a data-role="button" id="check93" class="q47" style="display:none"><span id="c93"></span></a>
+<a data-role="button" id="check94" class="q47" style="display:none"><span id="c94"></span></a>
+<a data-role="button" id="check95" class="q48" style="display:none"><span id="c95"></span></a>
+<a data-role="button" id="check96" class="q48" style="display:none"><span id="c96"></span></a>
+<a data-role="button" id="check97" class="q49" style="display:none"><span id="c97"></span></a>
+<a data-role="button" id="check98" class="q49" style="display:none"><span id="c98"></span></a>
+<a data-role="button" id="check99" class="q50" style="display:none"><span id="c99"></span></a>
+<a data-role="button" id="check100" class="q50" style="display:none"><span id="c100"></span></a>
+<a data-role="button" id="check101" class="q51" style="display:none"><span id="c101"></span></a>
+<a data-role="button" id="check102" class="q51" style="display:none"><span id="c102"></span></a>
+<a data-role="button" id="check103" class="q52" style="display:none"><span id="c103"></span></a>
+<a data-role="button" id="check104" class="q52" style="display:none"><span id="c104"></span></a>
+<a data-role="button" id="check105" class="q53" style="display:none"><span id="c105"></span></a>
+<a data-role="button" id="check106" class="q53" style="display:none"><span id="c106"></span></a>
+<a data-role="button" id="check107" class="q54" style="display:none"><span id="c107"></span></a>
+<a data-role="button" id="check108" class="q54" style="display:none"><span id="c108"></span></a>
+<a data-role="button" id="check109" class="q55" style="display:none"><span id="c109"></span></a>
+<a data-role="button" id="check110" class="q55" style="display:none"><span id="c110"></span></a>
+<a data-role="button" id="check111" class="q56" style="display:none"><span id="c111"></span></a>
+<a data-role="button" id="check112" class="q56" style="display:none"><span id="c112"></span></a>
+<a data-role="button" id="check113" class="q57" style="display:none"><span id="c113"></span></a>
+<a data-role="button" id="check114" class="q57" style="display:none"><span id="c114"></span></a>
+<a data-role="button" id="check115" class="q58" style="display:none"><span id="c115"></span></a>
+<a data-role="button" id="check116" class="q58" style="display:none"><span id="c116"></span></a>
+<a data-role="button" id="check117" class="q59" style="display:none"><span id="c117"></span></a>
+<a data-role="button" id="check118" class="q59" style="display:none"><span id="c118"></span></a>
+<a data-role="button" id="check119" class="q60" style="display:none"><span id="c119"></span></a>
+<a data-role="button" id="check120" class="q60" style="display:none"><span id="c120"></span></a>
+<a data-role="button" id="check121" class="q61" style="display:none"><span id="c121"></span></a>
+<a data-role="button" id="check122" class="q61" style="display:none"><span id="c122"></span></a>
+<a data-role="button" id="check123" class="q62" style="display:none"><span id="c123"></span></a>
+<a data-role="button" id="check124" class="q62" style="display:none"><span id="c124"></span></a>
+<a data-role="button" id="check125" class="q63" style="display:none"><span id="c125"></span></a>
+<a data-role="button" id="check126" class="q63" style="display:none"><span id="c126"></span></a>
+<a data-role="button" id="check127" class="q64" style="display:none"><span id="c127"></span></a>
+<a data-role="button" id="check128" class="q64" style="display:none"><span id="c128"></span></a>
+<a data-role="button" id="check129" class="q65" style="display:none"><span id="c129"></span></a>
+<a data-role="button" id="check130" class="q65" style="display:none"><span id="c130"></span></a>
+<a data-role="button" id="check131" class="q66" style="display:none"><span id="c131"></span></a>
+<a data-role="button" id="check132" class="q66" style="display:none"><span id="c132"></span></a>
+<a data-role="button" id="check133" class="q67" style="display:none"><span id="c133"></span></a>
+<a data-role="button" id="check134" class="q67" style="display:none"><span id="c134"></span></a>
+<a data-role="button" id="check135" class="q68" style="display:none"><span id="c135"></span></a>
+<a data-role="button" id="check136" class="q68" style="display:none"><span id="c136"></span></a>
+<a data-role="button" id="check137" class="q69" style="display:none"><span id="c137"></span></a>
+<a data-role="button" id="check138" class="q69" style="display:none"><span id="c138"></span></a>
+<a data-role="button" id="check139" class="q70" style="display:none"><span id="c139"></span></a>
+<a data-role="button" id="check140" class="q70" style="display:none"><span id="c140"></span></a>
+<a data-role="button" id="check141" class="q71" style="display:none"><span id="c141"></span></a>
+<a data-role="button" id="check142" class="q71" style="display:none"><span id="c142"></span></a>
+<a data-role="button" id="check143" class="q72" style="display:none"><span id="c143"></span></a>
+<a data-role="button" id="check144" class="q72" style="display:none"><span id="c144"></span></a>
+<a data-role="button" id="check145" class="q73" style="display:none"><span id="c145"></span></a>
+<a data-role="button" id="check146" class="q73" style="display:none"><span id="c146"></span></a>
+<a data-role="button" id="check147" class="q74" style="display:none"><span id="c147"></span></a>
+<a data-role="button" id="check148" class="q74" style="display:none"><span id="c148"></span></a>
+<a data-role="button" id="check149" class="q75" style="display:none"><span id="c149"></span></a>
+<a data-role="button" id="check150" class="q75" style="display:none"><span id="c150"></span></a>
+<a data-role="button" id="check151" class="q76" style="display:none"><span id="c151"></span></a>
+<a data-role="button" id="check152" class="q76" style="display:none"><span id="c152"></span></a>
+<a data-role="button" id="check153" class="q77" style="display:none"><span id="c153"></span></a>
+<a data-role="button" id="check154" class="q77" style="display:none"><span id="c154"></span></a>
+<a data-role="button" id="check155" class="q78" style="display:none"><span id="c155"></span></a>
+<a data-role="button" id="check156" class="q78" style="display:none"><span id="c156"></span></a>
+<a data-role="button" id="check157" class="q79" style="display:none"><span id="c157"></span></a>
+<a data-role="button" id="check158" class="q79" style="display:none"><span id="c158"></span></a>
+<a data-role="button" id="check159" class="q80" style="display:none"><span id="c159"></span></a>
+<a data-role="button" id="check160" class="q80" style="display:none"><span id="c160"></span></a>
+<a data-role="button" id="check161" class="q81" style="display:none"><span id="c161"></span></a>
+<a data-role="button" id="check162" class="q81" style="display:none"><span id="c162"></span></a>
+<a data-role="button" id="check163" class="q82" style="display:none"><span id="c163"></span></a>
+<a data-role="button" id="check164" class="q82" style="display:none"><span id="c164"></span></a>
+<a data-role="button" id="check165" class="q83" style="display:none"><span id="c165"></span></a>
+<a data-role="button" id="check166" class="q83" style="display:none"><span id="c166"></span></a>
+<a data-role="button" id="check167" class="q84" style="display:none"><span id="c167"></span></a>
+<a data-role="button" id="check168" class="q84" style="display:none"><span id="c168"></span></a>
+<a data-role="button" id="check169" class="q85" style="display:none"><span id="c169"></span></a>
+<a data-role="button" id="check170" class="q85" style="display:none"><span id="c170"></span></a>
+<a data-role="button" id="check171" class="q86" style="display:none"><span id="c171"></span></a>
+<a data-role="button" id="check172" class="q86" style="display:none"><span id="c172"></span></a>
+<a data-role="button" id="check173" class="q87" style="display:none"><span id="c173"></span></a>
+<a data-role="button" id="check174" class="q87" style="display:none"><span id="c174"></span></a>
+<a data-role="button" id="check175" class="q88" style="display:none"><span id="c175"></span></a>
+<a data-role="button" id="check176" class="q88" style="display:none"><span id="c176"></span></a>
+<a data-role="button" id="check177" class="q89" style="display:none"><span id="c177"></span></a>
+<a data-role="button" id="check178" class="q89" style="display:none"><span id="c178"></span></a>
+<a data-role="button" id="check179" class="q90" style="display:none"><span id="c179"></span></a>
+<a data-role="button" id="check180" class="q90" style="display:none"><span id="c180"></span></a>
+<a data-role="button" id="check181" class="q91" style="display:none"><span id="c181"></span></a>
+<a data-role="button" id="check182" class="q91" style="display:none"><span id="c182"></span></a>
+<a data-role="button" id="check183" class="q92" style="display:none"><span id="c183"></span></a>
+<a data-role="button" id="check184" class="q92" style="display:none"><span id="c184"></span></a>
+<a data-role="button" id="check185" class="q93" style="display:none"><span id="c185"></span></a>
+<a data-role="button" id="check186" class="q93" style="display:none"><span id="c186"></span></a>
+<a data-role="button" id="check187" class="q94" style="display:none"><span id="c187"></span></a>
+<a data-role="button" id="check188" class="q94" style="display:none"><span id="c188"></span></a>
+<a data-role="button" id="check189" class="q95" style="display:none"><span id="c189"></span></a>
+<a data-role="button" id="check190" class="q95" style="display:none"><span id="c190"></span></a>
+<a data-role="button" id="check191" class="q96" style="display:none"><span id="c191"></span></a>
+<a data-role="button" id="check192" class="q96" style="display:none"><span id="c192"></span></a>
+<a data-role="button" id="check193" class="q97" style="display:none"><span id="c193"></span></a>
+<a data-role="button" id="check194" class="q97" style="display:none"><span id="c194"></span></a>
+<a data-role="button" id="check195" class="q98" style="display:none"><span id="c195"></span></a>
+<a data-role="button" id="check196" class="q98" style="display:none"><span id="c196"></span></a>
+<a data-role="button" id="check197" class="q99" style="display:none"><span id="c197"></span></a>
+<a data-role="button" id="check198" class="q99" style="display:none"><span id="c198"></span></a>
+<a data-role="button" id="check199" class="q100" style="display:none"><span id="c199"></span></a>
+<a data-role="button" id="check200" class="q100" style="display:none"><span id="c200"></span></a>
+<button id="splice" style="display:none;" onClick="splice()">next</button>
+</div>
+</div>
+<div data-role="footer" data-position="fixed">		
+<div data-role="navbar">
+<ul>
+<li><a id="quit" ><label style="font-size:30px;">QUIT GAME</label></a></li>	
+</ul>
+</div>
+</div>
+</div>
+<div data-role="page" data-theme="a" id="saveDialog">
+<img id="result"/>
+<div data-role="content">
+<div id="relative2" style="color:white;">
+<h1 id="tryAgain"></h1>
+<form id="savedata" action="javascript:saveOnline();">
+<h1 style="font-size:30px;">Previous Score : </h1><input type="text" id="lastscore" disabled style="font-size:30px;"/>
+<h1 style="font-size:30px;">Your Score : </h1><input type="text" id="score" name="score" style="display:none;"/>
+<h1 id="score2" style="font-size:30px;"></h1>
+<input type="text" id="username" name="username" style="display:none;">
+</form>
+<button name="submit"  form="savedata" style="font-size:30px">SAVE SCORE</button>
+<a data-role="button"  id="playAgain" data-rel="dialog"><label style="font-size:30px;">Play Again</label></a><br /><br />
+<a href="#" data-role="button" data-mini="true" id="saveScore"><label style="font-size:30px;">Back to home</label></a>
+</div>
+</div>
+</div>
+<div data-role="page" data-theme="a" id="help1">
+<img id="helps" />
+<div data-role="content" data-theme="a">
+</div>
+<div data-role="footer" data-position="fixed">		
+<div data-role="navbar">
+<ul>
+<li><a href="#home" id="logout">Back home</a></li>
+</ul>
+</div>
+</div>
+</div> 
+
+<script>
+	var fruits = ["q1", "q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20","q21","q22","q23","q24","q25","q26","q27","q28","q29","q30","q31","q32","q33","q34","q35","q36","q37","q38","q39","q40","q41","q42","q43","q44","q45","q46","q47","q48","q49","q50","q51","q52","q53","q54","q55","q56","q57","q58","q59","q60","q61","q62","q63","q64","q65","q66","q67","q68","q69","q70","q71","q72","q73","q74","q75","q76","q77","q78","q79","q80","q81","q82","q83","q84","q85","q86","q87","q88","q89","q90","q91","q92","q93","q94","q95","q96","q97","q98","q99","q100"];
+var score=0;
+function splice(){
+document.getElementById("asd").innerHTML=score;
+var rand=Math.floor((Math.random() * 4));
+setTimeout(function(){
+var a=fruits.splice((Math.random() * fruits.length),1);
+if(a=="q1"){
+$(".q1").show();
+document.getElementById("questions").innerHTML="HTML tag, a link to another location";
+$("#c1").text("a.	Anchor");
+$("#c2").text("b.	target");
+$("#check1").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+$(".q1").hide();
+});
+$("#check2").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+$(".q1").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+
+}else if(a=="q2"){
+$(".q2").show();
+document.getElementById("questions").innerHTML="Used in an HTML tag for the benefit of people using nongraphical browsers, or for people using a browser with graphics turned off.";
+$("#c4").text("A.	alternative");
+$("#c3").text("B.	id");
+$("#check3").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+$(".q2").hide();
+});
+$("#check4").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+$(".q2").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+
+}else if(a=="q3"){
+$(".q3").show();
+document.getElementById("questions").innerHTML="A measurement of electrical current. One coulomb flowing per second.";
+$("#c5").text("A.	ampere");
+$("#c6").text("B.	ohms");
+$("#check5").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+$(".q3").hide();
+});
+$("#check6").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+$(".q3").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q4"){
+$(".q4").show();
+document.getElementById("questions").innerHTML="A term used for devices that increase output of sound or electrical voltage or current.";
+$("#c7").text("A.	speaker");
+$("#c8").text("B.	amplifier");
+$("#check7").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+$(".q4").hide();
+});
+$("#check8").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+$(".q4").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q5"){
+$(".q5").show();
+document.getElementById("questions").innerHTML="A computer program that performs useful work not related to the computer itself.";
+$("#c9").text("A.	application");
+$("#c10").text("B.	software");
+$("#check9").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+$(".q5").hide();
+});
+$("#check10").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+$(".q5").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER!";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q6"){
+$(".q6").show();
+document.getElementById("questions").innerHTML="Set of rules that define an exact format for communication between systems.";
+$("#c11").text("A. library");
+$("#c12").text("B. protocol");
+$("#check11").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q6").hide();
+});
+$("#check12").click(function(){
+clearInterval(time);
+score=score+1;
+
+splice();
+$(".q6").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);}else if(a=="q7"){
+$(".q7").show();
+document.getElementById("questions").innerHTML="A certification developed by the Computing Technology Industry Association to validate vendor-neutral skills for entry level computer technicians.";
+
+$("#c13").text("A. a+");
+$("#c14").text("B. c++");
+$("#check13").click(function(){
+score=score+1;
+clearInterval(time);
+splice();
+
+$(".q7").hide();
+});
+$("#check14").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q7").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q8"){
+$(".q8").show();
+document.getElementById("questions").innerHTML="The popular audio system from Realtek.";
+
+$("#c15").text("A. ALC861");
+$("#c16").text("B. AC97");
+$("#check15").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q8").hide();
+});
+$("#check16").click(function(){
+clearInterval(time);
+score=score+1;
+
+splice();
+$(".q8").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q9"){
+$(".q9").show();
+document.getElementById("questions").innerHTML="A Microsoft technology that facilitates various Internet applications, and therefore extends and enhances the functionality of Microsoft Internet Explorer browser.";
+
+$("#c17").text("A. ARPANET");
+$("#c18").text("B. ActiveX");
+$("#check17").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q9").hide();
+});
+$("#check18").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q9").hide();
+});
+
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q10"){
+$(".q10").show();
+document.getElementById("questions").innerHTML="A programming language developed in the late 1970s for the U.S. Department of Defense.";
+
+$("#c19").text("A. Ada");
+$("#c20").text("B. Java");
+$("#check19").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q10").hide();
+});
+$("#check20").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q10").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q11"){
+$(".q11").show();
+document.getElementById("questions").innerHTML="An advertising service by Google for businesses wanting to display ads on Google and its advertising network.";
+
+$("#c21").text("A. Adwords");
+$("#c22").text("B. Gads");
+$("#check21").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q11").hide();
+});
+$("#check22").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q11").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q12"){
+$(".q12").show();
+document.getElementById("questions").innerHTML="The new user interface for Windows Vista, except for the Start and Home Basic editions.";
+
+$("#c23").text("A. aero");
+$("#c24").text("B. xp");
+$("#check23").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q12").hide();
+});
+$("#check24").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q12").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q13"){
+$(".q13").show();
+document.getElementById("questions").innerHTML="Linux based operating system that is backed by Google and the other members of the Open Handset Alliance.";
+
+$("#c25").text("A. android");
+$("#c26").text("B. blackberry");
+$("#check25").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q13").hide();
+});
+$("#check26").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q13").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q14"){
+$(".q14").show();
+document.getElementById("questions").innerHTML="A metallic device used to transmit and receive electromagnetic waves.";
+
+$("#c27").text("A. antenna");
+$("#c28").text("B. signal");
+$("#check27").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q14").hide();
+});
+$("#check28").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q14").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q15"){
+$(".q15").show();
+document.getElementById("questions").innerHTML="This a Java program that can be embedded in a Web page. It cant access system resources on the local computer.";
+
+$("#c29").text("A. applet");
+$("#c30").text("B. plugin");
+$("#check29").click(function(){
+clearInterval(time);
+
+score=score+1;
+splice();
+$(".q15").hide();
+});
+$("#check30").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q15").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q16"){
+$(".q16").show();
+document.getElementById("questions").innerHTML="Data that is important information, stored for a long period of time in some recording media such as magnetic tapes, storage arrays or other non active hard disks.";
+
+$("#c31").text("A. history");
+$("#c32").text("B. archive");
+$("#check31").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q16").hide();
+});
+$("#check32").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q16").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q17"){
+$(".q17").show();
+document.getElementById("questions").innerHTML="A common name for the superuser account on UNIX systems. The other common name is root.";
+
+$("#c33").text("A. icon");
+$("#c34").text("B. avatar");
+$("#check33").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q17").hide();
+});
+$("#check34").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q17").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q18"){
+$(".q18").show();
+document.getElementById("questions").innerHTML="In Windows, a file that contains a list of commands";
+
+$("#c35").text("A. cmd");
+$("#c36").text("B. batch");
+$("#check35").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q18").hide();
+});
+$("#check36").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q18").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q19"){
+$(".q19").show();
+document.getElementById("questions").innerHTML="Composed of something other than human readable text. It is also the digital representation of text and data";
+
+$("#c37").text("A. assembly");
+$("#c38").text("B. binary");
+$("#check37").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q19").hide();
+});
+$("#check38").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q19").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q20"){
+$(".q20").show();
+document.getElementById("questions").innerHTML="Basically a journal that is available on the web.";
+
+$("#c39").text("A. website");
+$("#c40").text("B. blog");
+$("#check39").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q20").hide();
+});
+$("#check40").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q20").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q21"){
+$(".q21").show();
+document.getElementById("questions").innerHTML="To start a computer and load the operating system to prepare the computer to execute an application.";
+
+$("#c41").text("A. boot");
+$("#c42").text("B. loop");
+$("#check41").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q21").hide();
+});
+$("#check42").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q21").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q22"){
+$(".q22").show();
+document.getElementById("questions").innerHTML="The density, measured in number of bits per inch, at which information can be stored on magnetic tape.";
+
+$("#c43").text("A. bpi");
+$("#c44").text("B. pixel");
+$("#check43").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q22").hide();
+});
+$("#check44").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q22").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q23"){
+$(".q23").show();
+document.getElementById("questions").innerHTML="The standard way of measuring how fast data moves across a network or phone system.";
+
+$("#c45").text("A. bps");
+$("#c46").text("B. threading");
+$("#check45").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q23").hide();
+});
+$("#check46").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q23").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q24"){
+$(".q24").show();
+document.getElementById("questions").innerHTML="Wireless technology that allows devices to communicate at short range.";
+
+$("#c47").text("A. bluetooth");
+$("#c48").text("B. wifi");
+$("#check47").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q24").hide();
+});
+$("#check48").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q24").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q25"){
+$(".q25").show();
+document.getElementById("questions").innerHTML="Used to describe the data-carrying capacity of any given circuit or pathway. The measure of the rate at which information can be passed.";
+
+$("#c49").text("A. bandwidth");
+$("#c50").text("B. mbps");
+$("#check49").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q25").hide();
+});
+$("#check50").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q25").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q26"){
+$(".q26").show();
+document.getElementById("questions").innerHTML="The set of cables or connections that carries most of the traffic.";
+
+$("#c51").text("A. backbone");
+$("#c52").text("B. server");
+$("#check51").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q26").hide();
+});
+$("#check52").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q26").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q27"){
+$(".q27").show();
+document.getElementById("questions").innerHTML="The terrestrial link between an earth station and a switching or data center.";
+
+$("#c53").text("A. backhaul");
+$("#c54").text("B. space");
+$("#check53").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q27").hide();
+});
+$("#check54").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q27").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q28"){
+$(".q28").show();
+document.getElementById("questions").innerHTML="Software that is still in the testing stage not quite ready for wide release.";
+
+$("#c55").text("A. alpha");
+$("#c56").text("B. beta");
+$("#check55").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q28").hide();
+});
+$("#check56").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q28").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q29"){
+$(".q29").show();
+document.getElementById("questions").innerHTML="An attempt to gain control over a line in order to transmit data.";
+
+$("#c57").text("A. hyperlink");
+$("#c58").text("B. bid");
+$("#check57").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q29").hide();
+});
+$("#check58").click(function(){
+clearInterval(time);
+score=score+1;
+splice();
+
+$(".q29").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q30"){
+$(".q30").show();
+document.getElementById("questions").innerHTML="A term that originated in the in the realm of mathematics, and that is now commonly known for its application to search engine logic.";
+
+$("#c59").text("A. integer");
+$("#c60").text("B. boolean");
+$("#check59").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q30").hide();
+});
+$("#check60").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q30").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q31"){
+$(".q31").show();
+document.getElementById("questions").innerHTML="The return of a piece of mail because of an error in its delivery.";
+
+$("#c61").text("A. bounce");
+$("#c62").text("B. feedback");
+$("#check61").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q31").hide();
+});
+$("#check62").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q31").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q32"){
+$(".q32").show();
+document.getElementById("questions").innerHTML="Device that connects and passes packets between two network segments that use the same communications protocol.";
+
+$("#c63").text("A. cable");
+$("#c64").text("B. bridge");
+$("#check63").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q32").hide();
+});
+$("#check64").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q32").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q33"){
+$(".q33").show();
+document.getElementById("questions").innerHTML="Another word for high speed Internet.";
+
+$("#c65").text("A. DSL");
+$("#c66").text("B. broadband");
+$("#check65").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q33").hide();
+});
+$("#check66").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q33").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q34"){
+$(".q34").show();
+document.getElementById("questions").innerHTML="A storage area used for handling data in transit.";
+
+$("#c67").text("A. database");
+$("#c68").text("B. buffer");
+$("#check67").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q34").hide();
+});
+$("#check68").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q34").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q35"){
+$(".q35").show();
+document.getElementById("questions").innerHTML="An error in a piece of software that stops it from working the way that it should do.";
+
+$("#c69").text("A. virus");
+$("#c70").text("B. bug");
+$("#check69").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q35").hide();
+});
+$("#check70").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q35").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q36"){
+$(".q36").show();
+document.getElementById("questions").innerHTML="Created using computers and, more generally, the representation and manipulation of pictorial data by a computer.";
+
+$("#c71").text("A. pictures");
+$("#c72").text("B. graphics");
+$("#check71").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q36").hide();
+});
+$("#check72").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q36").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q37"){
+$(".q37").show();
+document.getElementById("questions").innerHTML="Used to format the layout of Web pages. They can be used to define text styles, table sizes, and other aspects of Web pages that previously could only be defined in a HTML page.";
+
+$("#c73").text("A. index");
+$("#c74").text("B. css");
+$("#check73").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q37").hide();
+});
+$("#check74").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q37").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q38"){
+$(".q38").show();
+document.getElementById("questions").innerHTML="Programming language developed at Bell Laboratories in the 1970s, based on the two earlier languages B and BCPL.";
+
+$("#c75").text("A. Visual Basic");
+$("#c76").text("B. C");
+$("#check75").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q38").hide();
+});
+$("#check76").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q38").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q39"){
+$(".q39").show();
+document.getElementById("questions").innerHTML="A programming language developed by Anders Hejlsberg for Windows programming.";
+
+$("#c77").text("A. Java");
+$("#c78").text("B. C#");
+$("#check77").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q39").hide();
+});
+$("#check78").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q39").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q40"){
+$(".q40").show();
+document.getElementById("questions").innerHTML="A temporary storage area for frequently accessed information.";
+
+$("#c79").text("A. database");
+$("#c80").text("B. cache");
+$("#check79").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q40").hide();
+});
+$("#check80").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q40").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q41"){
+$(".q41").show();
+document.getElementById("questions").innerHTML="Digital representation of user or device attributes, including a public key, that is signed with an authoritative private key.";
+
+$("#c81").text("A. copyright");
+$("#c82").text("B. certificate");
+$("#check81").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q41").hide();
+});
+$("#check82").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q41").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q42"){
+$(".q42").show();
+document.getElementById("questions").innerHTML="A miniaturized electronic circuit that has been manufactured in the surface of a thin substrate of semiconductor material";
+
+$("#c83").text("A. MEMS");
+$("#c84").text("B. chip");
+$("#check83").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q42").hide();
+});
+$("#check84").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q42").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q43"){
+$(".q43").show();
+document.getElementById("questions").innerHTML="A cryptographic algorithm used to encrypt data that is unreadable until converted into plain data with a predefined key.";
+
+$("#c85").text("A. password");
+$("#c86").text("B. cipher");
+$("#check85").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q43").hide();
+});
+$("#check86").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q43").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q44"){
+$(".q44").show();
+document.getElementById("questions").innerHTML="A software development tool that translates high level language programs into the machine language instructions that a particular processor can understand and execute.";
+
+$("#c87").text("A. compiler");
+$("#c88").text("B. simulator");
+$("#check87").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q44").hide();
+});
+$("#check88").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q44").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q45"){
+$(".q45").show();
+document.getElementById("questions").innerHTML="Refers to a technological design or architecture whose configuration is unavailable to the public and may not be duplicated without permission from the designer or architect.";
+
+$("#c89").text("A. nonproprietary");
+$("#c90").text("B. proprietary");
+$("#check89").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q45").hide();
+});
+$("#check90").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q45").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q46"){
+$(".q46").show();
+document.getElementById("questions").innerHTML="A piece of information sent by a Web Server to a Web Browser that the Browser software is expected to save and to send back to the Server whenever the browser makes additional requests from the Server.";
+
+$("#c91").text("A. cache");
+$("#c92").text("B. cookies");
+$("#check91").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q46").hide();
+});
+$("#check92").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q46").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q47"){
+$(".q47").show();
+document.getElementById("questions").innerHTML="A unit of power such as sound, optical or electrical which increase or decrease that is proportional to the exponential increase or decrease of power.";
+
+$("#c93").text("A. noise");
+$("#c94").text("B. decibel");
+$("#check93").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q47").hide();
+});
+$("#check94").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q47").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q48"){
+$(".q48").show();
+document.getElementById("questions").innerHTML="A collection of data organized in a structured manner so that information can be readily retrieved.";
+
+$("#c95").text("A. hard disk");
+$("#c96").text("B. database");
+$("#check95").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q48").hide();
+});
+$("#check96").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q48").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q49"){
+$(".q49").show();
+document.getElementById("questions").innerHTML="A thin, flexible, plastic, circular memory medium, coated on both sides with metal oxide and enclosed in a protective jacket.";
+
+$("#c97").text("A. hard disk");
+$("#c98").text("B. diskette");
+$("#check97").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q49").hide();
+});
+$("#check98").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q49").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q50"){
+$(".q50").show();
+document.getElementById("questions").innerHTML="A summary view of the status of multiple service level agreements.";
+
+$("#c99").text("A. leaderboard");
+$("#c100").text("B. dashboard");
+$("#check99").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q50").hide();
+});
+$("#check100").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q50").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q51"){
+$(".q51").show();
+document.getElementById("questions").innerHTML="To detect, diagnose, and eliminate errors in programs. Checking the logic of a program to isolate and eliminate the mistakes from a computer program or other software.";
+
+$("#c101").text("A. compile");
+$("#c102").text("B. debug");
+$("#check101").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q51").hide();
+});
+$("#check102").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q51").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q52"){
+$(".q52").show();
+document.getElementById("questions").innerHTML="A computer designed to sit on a desk.";
+
+$("#c103").text("A. Game Boy");
+$("#c104").text("B. desktop");
+$("#check103").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q52").hide();
+});
+$("#check104").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q52").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q53"){
+$(".q53").show();
+document.getElementById("questions").innerHTML="A hardware device that enables a mobile computer to function as a desktop computer.";
+
+$("#c105").text("A. remote");
+$("#c106").text("B. docking");
+$("#check105").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q53").hide();
+});
+$("#check106").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q53").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q54"){
+$(".q54").show();
+document.getElementById("questions").innerHTML="The unique name that identifies an internet site.";
+
+$("#c107").text("A. address");
+$("#c108").text("B. domain");
+$("#check107").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q54").hide();
+});
+$("#check108").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q54").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q54"){
+$(".q54").show();
+document.getElementById("questions").innerHTML="A software design technique in which data and procedures related to the data are undled together within a single entity, called the object.";
+
+$("#c107").text("A. abstraction");
+$("#c108").text("B. encapsulation");
+$("#check107").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q54").hide();
+});
+$("#check107").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q54").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q55"){
+$(".q55").show();
+document.getElementById("questions").innerHTML="The process of converting data into an unreadable format so that unauthorized views of the data can be blocked.";
+
+$("#c109").text("A. cryptography");
+$("#c110").text("B. encryption");
+$("#check109").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q55").hide();
+});
+$("#check110").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q55").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q56"){
+$(".q56").show();
+document.getElementById("questions").innerHTML="An attack on a computer system, especially one that takes advantage of a particular vulnerability that the system offers to intruders.";
+
+$("#c111").text("A. malware");
+$("#c112").text("B. exploit");
+$("#check111").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q56").hide();
+});
+$("#check112").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q56").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q57"){
+$(".q57").show();
+document.getElementById("questions").innerHTML="A data synopsis from a given system which is passed to another system to complete processing.";
+
+$("#c113").text("A. moving");
+$("#c114").text("B. extract");
+$("#check113").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q57").hide();
+});
+$("#check114").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q57").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q58"){
+$(".q58").show();
+document.getElementById("questions").innerHTML="A technology that allows a computer to have an almost unlimited number of devices running without using up all the hardware interrupts.";
+
+$("#c115").text("A. multitasking");
+$("#c116").text("B. firewire");
+$("#check115").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q58").hide();
+});
+$("#check116").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q58").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q59"){
+$(".q59").show();
+document.getElementById("questions").innerHTML="A computer program or software stored permanently in PROM or ROM or semi permanently in EPROM.";
+
+$("#c117").text("A. firewall");
+$("#c118").text("B. firmware");
+$("#check117").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q59").hide();
+});
+$("#check118").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q59").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q60"){
+$(".q60").show();
+document.getElementById("questions").innerHTML="A formatting style designated in HTML by a specific tag and used at the end of an HTML file.";
+
+$("#c119").text("A. element");
+$("#c120").text("B. footer");
+$("#check119").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q60").hide();
+});
+$("#check120").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q60").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q61"){
+$(".q61").show();
+document.getElementById("questions").innerHTML="A collection of one or more domain trees with a common schema and implicit trust relationships between them.";
+
+$("#c121").text("A. LAN");
+$("#c122").text("B. forest");
+$("#check121").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q61").hide();
+});
+$("#check122").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q61").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q62"){
+$(".q62").show();
+document.getElementById("questions").innerHTML="A stream of data that can be opened and accessed individually under a common filename.";
+
+$("#c123").text("A. folder");
+$("#c124").text("B. fork");
+$("#check123").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q62").hide();
+});
+$("#check124").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q62").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q63"){
+$(".q63").show();
+document.getElementById("questions").innerHTML="An HTML feature that allows web designers to segment the window of a web browser into distinct sections.";
+
+$("#c125").text("A. division");
+$("#c126").text("B. frame");
+$("#check125").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q63").hide();
+});
+$("#check126").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q63").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q64"){
+$(".q64").show();
+document.getElementById("questions").innerHTML="Approximately 1 billion bytes of data.";
+
+$("#c127").text("A. megabyte");
+$("#c128").text("B. gigabyte");
+$("#check127").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q64").hide();
+});
+$("#check128").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q64").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q65"){
+$(".q65").show();
+document.getElementById("questions").innerHTML="A hardware or software set-up that translates between two dissimilar protocols. A link from one computer system to a different computer system.";
+
+$("#c129").text("A. system");
+$("#c130").text("B. gateway");
+$("#check129").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q65").hide();
+});
+$("#check130").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q65").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q66"){
+$(".q66").show();
+document.getElementById("questions").innerHTML="Software tools and technology to support groups of people working together on a project, often at different sites";
+
+$("#c131").text("A. chatroom");
+$("#c132").text("B. groupware");
+$("#check131").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q66").hide();
+});
+$("#check132").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q66").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q67"){
+$(".q67").show();
+document.getElementById("questions").innerHTML="A unit of frequency equal to one cycle per second.";
+
+$("#c133").text("A. mbps");
+$("#c134").text("B. hertz");
+$("#check133").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q67").hide();
+});
+$("#check134").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q67").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q68"){
+$(".q68").show();
+document.getElementById("questions").innerHTML="An expert programmer who likes to spend a lot of time figuring out the finer details of computer systems or networks, as opposed to those who learn only the minimum necessary.";
+
+$("#c135").text("A. cracker");
+$("#c136").text("B. hacker");
+$("#check135").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q68").hide();
+});
+$("#check136").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q68").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q69"){
+$(".q69").show();
+document.getElementById("questions").innerHTML="The process of identifying and fixing vulnerabilities on a system.";
+
+$("#c137").text("A. debugging");
+$("#c138").text("B. hardening");
+$("#check137").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q69").hide();
+});
+$("#check138").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q69").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q70"){
+$(".q70").show();
+document.getElementById("questions").innerHTML="A scrambled, or encrypted, form of a password or other text.";
+
+$("#c139").text("A. captcha");
+$("#c140").text("B. hash");
+$("#check139").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q70").hide();
+});
+$("#check140").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q70").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q71"){
+$(".q71").show();
+document.getElementById("questions").innerHTML="A formatting style designated in HTML by a specific tag and used to set titles and subtitles apart from plain text.";
+
+$("#c141").text("A. header");
+$("#c142").text("B. about");
+$("#check141").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q71").hide();
+});
+$("#check142").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q71").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q72"){
+$(".q72").show();
+document.getElementById("questions").innerHTML="A trap for people who tamper with computers maliciously through the Internet, just as a pot of honey traps flies.";
+
+$("#c143").text("A. honeypot");
+$("#c144").text("B. antivirus");
+$("#check143").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q72").hide();
+});
+$("#check144").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q72").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q73"){
+$(".q73").show();
+document.getElementById("questions").innerHTML="A wireless Internet connection available for public use.";
+
+$("#c145").text("A. hotspot");
+$("#c146").text("B. wifi");
+$("#check145").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q73").hide();
+});
+$("#check146").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q73").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q74"){
+$(".q74").show();
+document.getElementById("questions").innerHTML="An icon that replaces the pointer when the computer is performing a function and cannot receive new input.";
+
+$("#c147").text("A. hourglass");
+$("#c148").text("B. arrow");
+$("#check147").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q74").hide();
+});
+$("#check148").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q74").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q75"){
+$(".q75").show();
+document.getElementById("questions").innerHTML="Generally, a term used to describe a device that serves as the center of a star-topology network.";
+
+$("#c149").text("A. hub");
+$("#c150").text("B. node");
+$("#check149").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q75").hide();
+});
+$("#check150").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q75").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q76"){
+$(".q76").show();
+document.getElementById("questions").innerHTML="One or more characters used to identify or name a data element and possibly to indicate certain properties of that data element.";
+
+$("#c151").text("A. identifier");
+$("#c152").text("B. alternative");
+$("#check151").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q76").hide();
+});
+$("#check152").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q76").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q77"){
+$(".q77").show();
+document.getElementById("questions").innerHTML="Symbols or illustrations on the desktop or computer screen that indicate program files, documents, or other functions.";
+
+$("#c153").text("A. icon");
+$("#c154").text("B. logo");
+$("#check153").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q77").hide();
+});
+$("#check154").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q77").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q78"){
+$(".q78").show();
+document.getElementById("questions").innerHTML="The name on some operating systems for a directory listing of files.";
+
+$("#c155").text("A. index");
+$("#c156").text("B. localhost");
+$("#check155").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q78").hide();
+});
+$("#check156").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q78").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q79"){
+$(".q79").show();
+document.getElementById("questions").innerHTML="The preparation a graphic image so that alternating rows are displayed in separate passes.";
+
+$("#c157").text("A. interface");
+$("#c158").text("B. illustration");
+$("#check157").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q79").hide();
+});
+$("#check158").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q79").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q80"){
+$(".q80").show();
+document.getElementById("questions").innerHTML="Literally means network of networks.";
+
+$("#c159").text("A. internet");
+$("#c160").text("B. WWW");
+$("#check159").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q80").hide();
+});
+$("#check160").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q80").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q81"){
+$(".q81").show();
+document.getElementById("questions").innerHTML="A constrained version of the Internet usually owned and controlled by a single company or organisation.";
+
+$("#c161").text("A. intranet");
+$("#c162").text("B. batch");
+$("#check161").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q81").hide();
+});
+$("#check162").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q81").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q82"){
+$(".q82").show();
+document.getElementById("questions").innerHTML="A high level programming language, developed by Sun Microsystems.";
+
+$("#c163").text("A. java");
+$("#c164").text("B. html");
+$("#check163").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q82").hide();
+});
+$("#check164").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q82").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q83"){
+$(".q83").show();
+document.getElementById("questions").innerHTML="A scripting language targeted specifically to the Internet. It is the first scripting language to fully conform to ECMAScript.";
+
+$("#c165").text("A. javascript");
+$("#c166").text("B. batch");
+$("#check165").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q83").hide();
+});
+$("#check166").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q83").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q84"){
+$(".q84").show();
+document.getElementById("questions").innerHTML="A library that makes it quicker and easier to build JavaScript webpages and web apps.";
+
+$("#c167").text("A. jquery");
+$("#c168").text("B. framework");
+$("#check167").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q84").hide();
+});
+$("#check168").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q84").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q85"){
+$(".q85").show();
+document.getElementById("questions").innerHTML="The heart of an operating system.";
+
+$("#c169").text("A. kernel");
+$("#c170").text("B. CPU");
+$("#check169").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q85").hide();
+});
+$("#check170").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q85").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q86"){
+$(".q86").show();
+document.getElementById("questions").innerHTML="A value that determines the output of an encryption algorithm when transforming plain text to encrypted text.";
+
+$("#c171").text("A. key");
+$("#c172").text("B. id");
+$("#check171").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q86").hide();
+});
+$("#check172").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q86").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q87"){
+$(".q87").show();
+document.getElementById("questions").innerHTML="Free standing, interactive devices installed for customer self service.";
+
+$("#c173").text("A. kiosk");
+$("#c174").text("B. demo");
+$("#check173").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q87").hide();
+});
+$("#check174").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q87").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q88"){
+$(".q88").show();
+document.getElementById("questions").innerHTML="A photography software program developed by Adobe Systems for Mac OS X and Microsoft Windows, designed to assist professional photographers.";
+
+$("#c175").text("A. lightroom");
+$("#c176").text("B. photoshop");
+$("#check175").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q88").hide();
+});
+$("#check176").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q88").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q89"){
+$(".q89").show();
+document.getElementById("questions").innerHTML="A record of a computers or applications activity, used for system information, backup, and recovery.";
+
+$("#c177").text("A. log");
+$("#c178").text("B. history");
+$("#check177").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q89").hide();
+});
+$("#check178").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q89").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q90"){
+$(".q90").show();
+document.getElementById("questions").innerHTML="Internal code name used for Windows Vista before its release.";
+
+$("#c179").text("A. longhorn");
+$("#c180").text("B. fedora");
+$("#check179").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q90").hide();
+});
+$("#check180").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q90").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q91"){
+$(".q91").show();
+document.getElementById("questions").innerHTML="A large capacity computer system with processing power that is significantly superior to PCs or midrange computers.";
+
+$("#c181").text("A. mainframe");
+$("#c182").text("B. dual core");
+$("#check181").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q91").hide();
+});
+$("#check182").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q91").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q92"){
+$(".q92").show();
+document.getElementById("questions").innerHTML="A type of attack where the attacker pretends to be an authorized user of a system in order to gain access to it or to gain greater privileges than they are authorized for.";
+
+$("#c183").text("A. masquerade");
+$("#c184").text("B. malware");
+$("#check183").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q92").hide();
+});
+$("#check184").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q92").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q93"){
+$(".q93").show();
+document.getElementById("questions").innerHTML="The HTML tag used to describe the contents of a Web page.";
+
+$("#c185").text("A. meta");
+$("#c186").text("B. script");
+$("#check185").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q93").hide();
+});
+$("#check186").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q93").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q94"){
+$(".q94").show();
+document.getElementById("questions").innerHTML="Software that allows elements of applications to interoperate across networks links.";
+
+$("#c187").text("A. middleware");
+$("#c188").text("B. firewall");
+$("#check187").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q94").hide();
+});
+$("#check188").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q94").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q95"){
+$(".q95").show();
+document.getElementById("questions").innerHTML="A programming language invented by Guido van Rossum for quick, easy construction of relatively small programs, especially those that involve character string operations.";
+
+$("#c189").text("A. python");
+$("#c190").text("B. java");
+$("#check189").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q95").hide();
+});
+$("#check190").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q95").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q96"){
+$(".q96").show();
+document.getElementById("questions").innerHTML="Programming commands that are inside of another command.";
+
+$("#c191").text("A. nesting");
+$("#c192").text("B. batch");
+$("#check191").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q96").hide();
+});
+$("#check192").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q96").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q97"){
+$(".q97").show();
+document.getElementById("questions").innerHTML="A collection of modems that provide local access to a system.";
+
+$("#c193").text("A. node");
+$("#c194").text("B. router");
+$("#check193").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q97").hide();
+});
+$("#check194").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q97").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q98"){
+$(".q98").show();
+document.getElementById("questions").innerHTML="When a variable has no value";
+
+$("#c195").text("A. null");
+$("#c196").text("B. zero");
+$("#check195").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q98").hide();
+});
+$("#check196").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q98").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q99"){
+$(".q99").show();
+document.getElementById("questions").innerHTML="In computing, a condition where data is presented to a buffer or port faster than it can be processed, resulting in lost data.";
+
+$("#c197").text("A. overflow");
+$("#c198").text("B. recover");
+$("#check197").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q99").hide();
+});
+$("#check198").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q99").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="q100"){
+$(".q100").show();
+document.getElementById("questions").innerHTML="";
+
+$("#c199").text("Godzilla");
+$("#c200").text("asdasdasd");
+$("#check199").click(function(){
+score=score+1;
+splice();
+clearInterval(time);
+
+$(".q100").hide();
+});
+$("#check200").click(function(){
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+
+$(".q100").hide();
+});
+var timer=0;
+var time=setInterval(function () {
+timer=timer+1;
+$("#showTimer").html(timer);
+if(timer==10){
+alert("times up!");
+window.localStorage.setItem("score",score);
+document.getElementById("tryAgain").innerHTML="GAME OVER";
+document.getElementById("score2").innerHTML= score;
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+clearInterval(time);
+}
+}, 1000);
+}else if(a=="" || fruits.length==0){
+fruits.splice(0,1);
+window.localStorage.setItem("score",score);
+var getScore=window.localStorage.getItem("score");
+document.getElementById("score").value=getScore;
+var getlastscore=window.localStorage.getItem("lastscore");
+document.getElementById("lastscore").value=getlastscore;
+var getUsername=window.localStorage.getItem("datauser");
+document.getElementById("username").value=getUsername;
+location.href="#saveDialog";
+}
+},1000);
+}
+
+
+$("#logout").click(function(){
+		window.localStorage.removeItem("datauser");
+		location.href="index.html";
+});
+
+$("#playAgain").click(function(){
+		location.href="#home";
+		location.reload();
+		var score=window.localStorage.getItem("score");
+		var changeScore=window.localStorage.setItem("lastscore",score);
+	});
+		$("#saveScore").click(function(){
+		location.href="#home";
+		location.reload();
+		var score=window.localStorage.getItem("score");
+		window.localStorage.setItem("lastscore",score);
+	});
+
+	
+//save online
+function saveOnline(){
+
+var form = $("#savedata");
+         				$.getJSON("phpcodes/savescore.php?callback=?", form.serialize(),function(data)
+         				{
+						alert("Success!")
+						location.href="home.html";
+						var score=window.localStorage.getItem("score");
+						window.localStorage.setItem("lastscore",score);
+         				}).fail(function(data){
+         				alert("Failed to Save");
+         				});
+}
+
+	
+	// leaderboard get onLine
+	function Ajax(){
+
+		var xmlhttp;
+		if(window.XMLHttpRequest){
+			xmlhttp = new XMLHttpRequest();
+		}else{
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState==4 && xmlhttp.status==200){
+				document.getElementById("inserthere").innerHTML=xmlhttp.responseText;
+		}}
+	xmlhttp.open("GET","phpcodes/leaderboard.php", true);
+		xmlhttp.send();
+	}
+	
+$("#menu").click(function(){
+$("#logout").slideToggle(100).click(function(){
+localStorage.removeItem("datauser");
+location.href="index.html";
+});
+});
+
+$("#back").click(function(){
+location.href="#home";
+});
+
+$("#quit").click(function(){
+location.href="home.html";
+});
+
+$("#btnAnimals").click(function(){
+splice();
+});
+	</script>
+</body>
+</html>

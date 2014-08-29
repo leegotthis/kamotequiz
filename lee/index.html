@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="themes/mobiletheme.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.3.min.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	<style>
+
+#relative {
+    position: relative;
+    top: -30px;
+	color:white;
+}
+
+#bg{
+	position:fixed;
+	height:100%;
+	width:100%;
+	background-image:url(css/home.jpg);
+	background-position: top center;
+	background-size: cover;
+}
+	</style>
+		
+</head>
+<body>
+	<div data-role="page" data-theme="a" id="index">
+		<img id="bg" />
+		<div data-role="content" data-theme="a">
+			<div id="relative"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<form id="hideme"  action="javascript:verifyfirst()">
+			
+			
+			<input type="text"  name="username" id="username"  placeholder="Username" style="font-size:30px;" required />
+			
+			<input type="password" name="pass" id="lpass" placeholder="Password" style="font-size:30px;" required />
+
+	<button name="submit" style="font-size:30px;">LOGIN</button>
+		
+			</form>
+
+			<div id="result"></div>
+			
+			<h1 id="res"></h1>
+			<div style="display:none;" id="toggle">
+			<div class="ui-btn ui-icon-info ui-btn-icon-left">
+			<form id="form" action="javascript:registeruser();" >
+     
+                        <input type="text" class="form-control" name="fullname" id="fullname" maxlength="150" style="font-size:30px;" required placeholder="FullName">
+                        
+                        <input type="email"  class="form-control" name="email" id="email" maxlength="50" style="font-size:30px;" required placeholder="Email">
+                      
+                        <input type="text" class="form-control" name="username" id="username" required maxlength="15" style="font-size:30px;" placeholder="UserName">
+                       
+                        <input type="password" class="form-control" name="pass" id="pass" maxlength="15" required style="font-size:30px;" placeholder="Password">
+               
+                        <input type="password" class="form-control" name="cpass" id="cpass" maxlength="15" required style="font-size:30px;" placeholder="Confirm Password">
+                        
+</form>
+</div>
+<button  id="btnsubmit" form="signupform" style="font-size:30px;">Submit</button>
+
+		
+		</div>
+		<button id="hideReg"><small id="change" style="font-size:30px;">REGISTRATION</small></button>
+		<button id="hideReg2" style="display:none;"><small id="change" style="font-size:30px;">CANCEL</small></button>
+		</div>
+		</div>
+			</div>
+<script>
+		
+		setTimeout(function(){
+         if(localStorage.getItem("datauser") === null || localStorage.getItem("datauser") == ""){
+         
+         	}
+         else
+         	{
+         	location.href="home.html";
+         	}
+         },1000);
+
+     $("#hideReg").click(function(){
+	 $(this).hide();
+					$.mobile.loading('show');
+					$("#hideme").fadeIn();
+						$("#toggle").fadeIn(function(){
+								$.mobile.loading('hide');
+							
+						});
+						$("#hideReg2").show();
+     });
+	 
+	 $("#hideReg2").click(function(){
+	 $(this).hide();
+					$.mobile.loading('show');
+					$("#hideme").fadeIn();
+						$("#toggle").fadeOut(function(){
+								$.mobile.loading('hide');
+							
+						});
+						$("#hideReg").show();
+     });
+	 
+					$("#hideReg1").click(function(){
+							$.mobile.loading('show');
+							location.href="index.html";
+							$.mobile.loading('hide');
+     });
+	
+var form = $("#form");        
+function registeruser()
+         		{
+ 
+         				$.getJSON("phpcodes/uregister.php?callback=?", form.serialize(),function(data)
+         				{
+							location.href="#index";
+							location.reload();
+							alert("Success!");
+         				}).fail(function(data){
+         				alert("failed");
+         				});
+         				
+         		}
+         var lform = $("#hideme");
+         		function verifyfirst(){
+         		if($( "#lusername" ).val() == "" || $( "#lpass" ).val() == "")
+         		{
+         		return;
+         		}
+         			
+         		
+         			$.getJSON("phpcodes/verifyfirst.php?callback=?", lform.serialize(),function(data)
+         			{
+         				if (data.verified == "v1")
+         				{
+         				localStorage.setItem("datauser", data.username);
+         				location.href="home.html";
+         				}
+         				else
+         				{
+         				alert("problem with your Account please try again.")
+         				}
+         			}).fail(function(data){
+         				alert("failed to log in");
+         				
+         			});
+         		}
+
+
+
+</script>
+</body>
+</html>
